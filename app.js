@@ -14,9 +14,10 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+mongoose.set('strictQuery', false);
 
 // create a connection
-mongoose.connect(process.env.db, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/yourdatabase", {useNewUrlParser: true});
 
 // create a schema
 const itemsSchema = {
